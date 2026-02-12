@@ -8,3 +8,4 @@ firebase_credentials.json
 .idea
 /dist
 .vscode/launch.json
+*.zip
