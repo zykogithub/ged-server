@@ -1,0 +1,13 @@
+const PostField = Object.freeze({
+    TABLE_NAME: 'POSTS',
+    POST_ID: 'POST_ID',
+    POST_TITLE: 'POST_TITLE',
+    POST_CONTENT: 'POST_CONTENT',
+    POST_LINK: 'POST_LINK',
+    POST_SOURCE_ID: 'POST_SOURCE_ID',
+    POST_DATE: 'POST_DATE',
+    POST_IMAGE_FILE_NAMES: 'POST_IMAGE_FILE_NAMES',
+    POST_TEST: 'POST_TEST'
+});
+
+export default PostField;

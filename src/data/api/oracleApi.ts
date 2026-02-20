@@ -5,6 +5,7 @@ import { dbConfig } from '@api/configs';
 import {ORACLE_HOME} from "@root/env";
 
 oracledb.initOracleClient({ libDir: ORACLE_HOME });
+oracledb.fetchAsString = [ oracledb.CLOB ];
 
 export default class OracleApi {
     private _pool: Pool | null = null;

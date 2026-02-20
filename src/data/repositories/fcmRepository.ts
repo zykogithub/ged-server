@@ -2,11 +2,11 @@ import FirebaseApi from '@api/firebaseApi';
 import OracleApi from "@api/oracleApi";
 import type {FcmMessage, FcmMulticastMessage} from '@models/fcmMessage';
 import type {FcmToken, FcmTokens} from "@models/fcmTokens";
-import * as getFcmTokenQuery from "@queries/fcmTokenQueries/getFcmTokenQuery"
-import * as getFcmTokensQuery from "@queries/fcmTokenQueries/getFcmTokensQuery"
-import * as insertFcmTokenQuery from "@queries/fcmTokenQueries/insertFcmTokenQuery"
-import * as updateFcmTokenQuery from "@queries/fcmTokenQueries/updateFcmTokenQuery"
-import * as deleteFcmTokenQuery from "@queries/fcmTokenQueries/deleteFcmTokenQuery";
+import * as getFcmTokenQuery from "@queries/fcmToken/getFcmTokenQuery"
+import * as getFcmTokensQuery from "@queries/fcmToken/getFcmTokensQuery"
+import * as insertFcmTokenQuery from "@queries/fcmToken/insertFcmTokenQuery"
+import * as updateFcmTokenQuery from "@queries/fcmToken/updateFcmTokenQuery"
+import * as deleteFcmTokenQuery from "@queries/fcmToken/deleteFcmTokenQuery";
 import type {Result} from "oracledb";
 
 const firebaseApi = new FirebaseApi();

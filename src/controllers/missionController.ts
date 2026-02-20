@@ -191,19 +191,18 @@ export const updateMission = async (req: Request, res: Response): Promise<void> 
 
         const serverResponse: ServerResponse = { message: 'Mission has been updated successfully'};
         res.status(201).json(serverResponse);
+
+        const previousImageFileName = previousMission?.imageFileName;
+        if (previousImageFileName && previousImageFileName != mission.imageFileName) {
+            await imageRepository.deleteImage(getImagePath(previousImageFileName))
+                .catch(error =>
+                    e(new Error(`Error deleting previous mission image ${previousImageFileName}: ${error.message}`))
+                );
+        }
     } catch (error: any) {
         e(new Error(`Error updating mission ${mission.id}: ${error.message}`));
         res.status(500).json(oracleErrorResponse(error));
         return;
-    }
-
-    try {
-        const previousImageFileName = previousMission?.imageFileName;
-        if (previousImageFileName && previousImageFileName != mission.imageFileName) {
-            await imageRepository.deleteImage(getImagePath(previousImageFileName));
-        }
-    } catch (error: any) {
-        e(new Error(`Error deleting previous mission image ${previousMission?.id}: ${error.message}`));
     }
 }
 
@@ -223,18 +222,15 @@ export const deleteMission = async (req: Request, res: Response): Promise<void> 
         await missionRepository.deleteMission(missionId, missionTest);
         const serverResponse: ServerResponse = { message: 'Mission has been deleted successfully' };
         res.status(200).json(serverResponse);
+
+        if (imageFileName) {
+            await imageRepository.deleteImage(getImagePath(imageFileName))
+                .catch(error => e(new Error(`Error deleting mission image ${imageFileName} : ${error.message}`)));
+        }
     } catch (error: any) {
         e(new Error(`Error deleting mission ${missionId} : ${error.message}`));
         res.status(500).json(oracleErrorResponse(error));
         return;
-    }
-
-    if (imageFileName) {
-        try {
-            await imageRepository.deleteImage(getImagePath(imageFileName));
-        } catch (error: any) {
-            e(new Error(`Error deleting mission image ${missionId} : ${error.message}`));
-        }
     }
 }
 
